@@ -1,0 +1,17 @@
+Getting Started
+===============
+
+Bootstrap
+---------
+
+  curl -sS https://getcomposer.org/installer | php
+  php composer.phar install
+
+
+Running Tests
+-------------
+
+  FILE=debian-7.3.0-i386-DVD-2.iso \
+  FILESIZE=4698576896 \
+  SHA256SUM=dd28bcb8ab253d332c908586d9c853b39b8b095875171bec2f1da90d7e3b5528 \
+  vendor/bin/phpunit
