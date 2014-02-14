@@ -31,11 +31,13 @@ class FilesystemTest extends PHPUnit_Framework_TestCase
 
     public function tearDown()
     {
-        exec(sprintf(
-            'truncate --size %s %s',
-            escapeshellarg($this->filesize),
-            escapeshellarg($this->file)
-        ));
+        if ($this->filesize && $this->file) {
+            exec(sprintf(
+                'truncate --size %s %s',
+                escapeshellarg($this->filesize),
+                escapeshellarg($this->file)
+            ));
+        }
     }
 
     public function testFilesize()
