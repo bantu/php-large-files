@@ -12,6 +12,16 @@
 */
 class MathTest extends PHPUnit_Framework_TestCase
 {
+    public function testFloatEqualityComparison()
+    {
+        $this->assertSame(4503599627370496, pow(2, 52));
+    }
+
+    public function testNumberCasting()
+    {
+        $this->assertSame(4503599627370496, 0 + '4503599627370496');
+    }
+
     public function testLargeFloatStringWithoutWorkaround()
     {
         $this->assertSame('4503599627370496', (string) pow(2, 52));
