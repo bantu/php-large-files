@@ -83,6 +83,24 @@ class FilesystemTest extends PHPUnit_Framework_TestCase
         $this->assertSame($expected, hash_file('sha256', $this->file));
     }
 
+    /**
+    * @depends testHashFile
+    */
+    public function testFopenFilePutContents()
+    {
+        $fp = fopen($this->file, 'rb');
+        $filename = $this->getTempfile();
+        file_put_contents($filename, $fp);
+        $actual = hash_file('sha256', $filename);
+        unlink($filename);
+        $this->assertSame($this->sha256sum, $actual);
+    }
+
+    protected function getTempfile()
+    {
+        return tempnam(__DIR__ . '/..', 'data-php-large-file-test');
+    }
+
     protected function getOpenHash($filename, $algo = 'sha256')
     {
         $hash = hash_init($algo);
